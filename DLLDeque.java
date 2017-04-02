@@ -222,13 +222,15 @@ public class DLLDeque<E> implements Deque<E> {
 	return false;
     }//O(n)
 
-    
+    //toString as per java.util.AbstractCollection
     public String toString() {
-	String ret = "HEAD->";
+	if (size() == 0) { return "[]"; }
+	String ret = "[";
 	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
-	    ret += tmp.getCargo() + "->";
+	    ret += tmp.getCargo() + ", ";
 	}
-	return ret += "NULL";
+	ret = ret.substring(0,ret.length()-2) + "]";
+	return ret;
     }//O(n)
 
     //return an Iterator over this list
@@ -377,19 +379,19 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("\ntesting various add methods");
 	System.out.println("d.offerFirst(\"c\")");
 	d.offerFirst("c"); 
-	System.out.println("d: " + d); //d: HEAD->c->NULL
+	System.out.println("d: " + d); //d: [c]
 	System.out.println("d.addFirst(\"b\")");
 	d.addFirst("b"); 
-	System.out.println("d: " + d); //d: HEAD->b->c->NULL
+	System.out.println("d: " + d); //d: [b, c]
 	System.out.println("d.push(\"a\")");
 	d.push("a");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->NULL
+	System.out.println("d: " + d); //d: [a, b, c]
 	System.out.println("d.offerLast(\"y\")");
 	d.offerLast("y");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->y->NULL
+	System.out.println("d: " + d); //d: [a, b, c, y]
 	System.out.println("d.addLast(\"z\"): ");
 	d.addLast("z");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->y->z->NULL
+	System.out.println("d: " + d); //d: [a, b, c, y, z]
 
 	System.out.println("\ntesting various accessor methods");
 	System.out.println("d.getFirst(): " + d.getFirst()); //d.getFirst(): a
@@ -399,63 +401,63 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("d.peekLast(): " + d.peekLast()); //d.peekLast(): z
 
 	System.out.println("\ntesting size() and isEmpty()");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->y->z->NULL
+	System.out.println("d: " + d); //d: [a, b, c, y, z]
 	System.out.println("d.size(): " + d.size()); //d.size(): 5
 	System.out.println("d.isEmpty(): " + d.isEmpty()); //d.isEmpty(): false
 
 	System.out.println("\ntesting clear() and size() and isEmpty()");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->y->z->NULL
+	System.out.println("d: " + d); //d: [a, b, c, y, z]
 	System.out.println("d.clear()");
 	d.clear();
-	System.out.println("d: " + d); //d: HEAD->NULL
+	System.out.println("d: " + d); //d: []
 	System.out.println("d.size(): " + d.size()); //d.size(): 0
 	System.out.println("d.isEmpty(): " + d.isEmpty()); //d.isEmpty(): true
 
 	System.out.println("\ntesting misc methods");
 	System.out.println("d.offer(\"p\")"); 
 	d.offer("p");
-	System.out.println("d: " + d); //d: HEAD->p->NULL
+	System.out.println("d: " + d); //d: [p]
 	System.out.println("d.offer(\"L\")");
 	d.offer("L");
-	System.out.println("d: " + d); //d: HEAD->p->L->NULL
+	System.out.println("d: " + d); //d: [p, L]
 	System.out.println("d.offer(\"b\")");
 	d.offer("b");
-	System.out.println("d: " + d); //d: HEAD->p->L->b->NULL
+	System.out.println("d: " + d); //d: [p, L, b]
 	System.out.println("d.offer(\"L\")");
 	d.offer("L");
-	System.out.println("d: " + d); //d: HEAD->p->L->b->L->NULL
+	System.out.println("d: " + d); //d: [p, L, b, L]
 	System.out.println("d.offer(\"p\")");
 	d.offer("p");
-	System.out.println("d: " + d); //d: HEAD->p->L->b->L->p->NULL
+	System.out.println("d: " + d); //d: [p, L, b, L, p]
 	System.out.println("d.offer(\"L\")");
 	d.offer("L");
-	System.out.println("d: " + d); //d: HEAD->p->L->b->L->p->L->NULL
+	System.out.println("d: " + d); //d: [p, L, b, L, p, L]
 	System.out.println("d.offer(\"b\")");
 	d.offer("b");
-	System.out.println("d: " + d); //d: HEAD->p->L->b->L->p->L->b->NULL
+	System.out.println("d: " + d); //d: [p, L, b, L, p, L, b]
 
 	System.out.println("\ntesting contains(Object o)");
 	System.out.println("d.contains(\"L\"): " + d.contains("L")); //d.contains("L"): true
 	System.out.println("\ntesting removeFirstOccurence(Object o)");	
-	System.out.println("d: " + d); //d: HEAD->p->L->b->L->p->L->b->NULL
+	System.out.println("d: " + d); //d: [p, L, b, L, p, L, b]
 	System.out.println("d.removeFirstOccurence(\"L\"): " + d.removeFirstOccurence("L")); //d.removeFirstOccurence("L"): true
-	System.out.println("d: " + d); //d: HEAD->p->b->L->p->L->b->NULL
-	System.out.println("\ntesting removeLastOccurence(Object o)"); //
-	System.out.println("d: " + d); //d: HEAD->p->b->L->p->L->b->NULL
+	System.out.println("d: " + d); //d: [p, b, L, p, L, b]
+	System.out.println("\ntesting removeLastOccurence(Object o)");
+	System.out.println("d: " + d); //d: [p, b, L, p, L, b]
 	System.out.println("d.removeLastOccurence(\"L\"): " + d.removeLastOccurence("L")); //d.removeLastOccurence("L"): true
-	System.out.println("d: " + d); //d: HEAD->p->b->L->p->b->NULL
+	System.out.println("d: " + d); //d: [p, b, L, p, b]
 
 	System.out.println("\ntesting various remove methods");
 	System.out.println("d.pollFirst(): " + d.pollFirst()); //d.pollFirst(): p
-	System.out.println("d: " + d); //d: HEAD->b->L->p->b->NULL
+	System.out.println("d: " + d); //d: [b, L, p, b]
 	System.out.println("d.removeFirst(): " + d.removeFirst()); //d.removeFirst(): b
-	System.out.println("d: " + d); //d: HEAD->L->p->b->NULL
+	System.out.println("d: " + d); //d: [L, p, b]
 	System.out.println("d.pop(): " + d.pop()); //d.pop(): L
-	System.out.println("d: " + d); //d: HEAD->p->b->NULL
+	System.out.println("d: " + d); //d: [p, b]
 	System.out.println("d.pollLast(): " + d.pollLast()); //d.pollLast(): b
-	System.out.println("d: " + d); //d: HEAD->p->NULL
+	System.out.println("d: " + d); //d: [p]
 	System.out.println("d.removeLast(): " + d.removeLast()); //d.removeLast(): p
-	System.out.println("d: " + d); //d: HEAD->NULL
+	System.out.println("d: " + d); //d: []
 
 	System.out.println("\ntesting for null output");
 	System.out.println("d.peekFirst(): " + d.peekFirst()); //d.peekFirst(): null
@@ -467,16 +469,16 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("\ntesting iterator()");
 	System.out.println("d.offer(\"a\")");
 	d.offer("a");
-	System.out.println("d: " + d); //d: HEAD->a->NULL
+	System.out.println("d: " + d); //d: [a]
 	System.out.println("d.offer(\"b\")");
 	d.offer("b");
-	System.out.println("d: " + d); //d: HEAD->a->b->NULL
+	System.out.println("d: " + d); //d: [a, b]
 	System.out.println("d.offer(\"c\")");
 	d.offer("c");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->NULL
+	System.out.println("d: " + d); //d: [a, b, c]
 	System.out.println("d.offer(\"d\")");
 	d.offer("d");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->d->NULL
+	System.out.println("d: " + d); //d: [a, b, c, d]
 
 	System.out.println("Iterator<String> ascIt = d.iterator()");
 	Iterator<String> ascIt = d.iterator();
@@ -489,28 +491,28 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("ascIt.next(): " + ascIt.next()); //ascIt.next(): c
 	System.out.println("ascIt.remove()");
 	ascIt.remove();
-	System.out.println("d: " + d); //d: HEAD->a->b->d->NULL
+	System.out.println("d: " + d); //d: [a, b, d]
 	System.out.println("ascIt.hasNext(): " + ascIt.hasNext()); //ascIt.hasNext(): true
 	System.out.println("ascIt.next(): " + ascIt.next()); //ascIt.next(): d
 	System.out.println("ascIt.hasNext(): " + ascIt.hasNext()); //ascIt.hasNext(): false
 
 	System.out.println("\nd.clear()");
 	d.clear();
-	System.out.println("d: " + d);//d: HEAD->NULL
+	System.out.println("d: " + d);//d: []
 
 	System.out.println("\ntesting descendingIterator()");
 	System.out.println("d.offer(\"a\")");
 	d.offer("a");
-	System.out.println("d: " + d); //d: HEAD->a->NULL
+	System.out.println("d: " + d); //d: [a]
 	System.out.println("d.offer(\"b\")");
 	d.offer("b");
-	System.out.println("d: " + d); //d: HEAD->a->b->NULL
+	System.out.println("d: " + d); //d: [a, b]
 	System.out.println("d.offer(\"c\")");
 	d.offer("c");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->NULL
+	System.out.println("d: " + d); //d: [a, b, c]
 	System.out.println("d.offer(\"d\")");
 	d.offer("d");
-	System.out.println("d: " + d); //d: HEAD->a->b->c->d->NULL
+	System.out.println("d: " + d); //d: [a, b, c, d]
 
 	System.out.println("Iterator<String> descIt = d.descendingIterator()");
 	Iterator<String> descIt = d.descendingIterator();
@@ -523,7 +525,7 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("descIt.next(): " + descIt.next()); //descIt.next(): b
 	System.out.println("descIt.remove()");
 	descIt.remove();
-	System.out.println("d: " + d); //d: HEAD->a->c->d->NULL
+	System.out.println("d: " + d); //d: [a, c, d]
 	System.out.println("descIt.hasNext(): " + descIt.hasNext()); //descIt.hasNext(): true
 	System.out.println("descIt.next(): " + descIt.next()); //descIt.next(): a
 	System.out.println("descIt.hasNext(): " + descIt.hasNext()); //descIt.hasNext(): false
