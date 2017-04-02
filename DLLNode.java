@@ -1,4 +1,4 @@
-// Team jakue -- Kenny Chen, Adeeb Rahman, Jake Zaia
+// Team jakue -- Kenny Chen, Adeebur Rahman, Jake Zaia
 // APCS2 p1
 // LAB #02 -- All Hands on Deque!
 // 2017-04-03
