@@ -1,3 +1,8 @@
+// Team jakue -- Kenny Chen, Adeeb Rahman, Jake Zaia
+// APCS2 p1
+// LAB #02 -- All Hands on Deque!
+// 2017-04-03
+
 public class DLLDeque<T> implements Deque<T> {
     DLLNode<T> _front, _end;
 
@@ -13,7 +18,7 @@ public class DLLDeque<T> implements Deque<T> {
     public T remove() {
 	return removeLast();
     }
-    
+
     public boolean isEmpty() {
 	return _front == null;
     }
@@ -73,13 +78,13 @@ public class DLLDeque<T> implements Deque<T> {
 	d.addLast("dog");
 	d.addLast("emu");
 	
-	System.out.println(d.peekFirst());
-	System.out.println(d.peekLast());
-	System.out.println(d.removeFirst());
-	System.out.println(d.peekFirst());
-	System.out.println(d.peekLast());
-	System.out.println(d.removeLast());
-	System.out.println(d.peekFirst());
-	System.out.println(d.peekLast());
+	System.out.println(d.peekFirst());    // Expected; "armadillo"
+	System.out.println(d.peekLast());     // Expected; "emu"
+	System.out.println(d.removeFirst());  // Expected; "armadillo"
+	System.out.println(d.peekFirst());    // Expected; "boar"
+	System.out.println(d.peekLast());     // Expected; "emu"
+	System.out.println(d.removeLast());   // Expected; "emu"
+	System.out.println(d.peekFirst());    // Expected; "boar"
+	System.out.println(d.peekLast());     // Expected; "dog"
     }
 }

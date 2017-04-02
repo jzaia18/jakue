@@ -1,3 +1,8 @@
+// Team jakue -- Kenny Chen, Adeeb Rahman, Jake Zaia
+// APCS2 p1
+// LAB #02 -- All Hands on Deque!
+// 2017-04-03
+
 /*****************************************************
  * interface Queue
  * Includes only methods listed in AP subset of Java
