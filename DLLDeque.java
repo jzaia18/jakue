@@ -171,7 +171,7 @@ public class DLLDeque<E> implements Deque<E> {
     //misc methods
 
     //returns true if deque is empty
-    public boolean isEmpty() { return _front == null; } //O(1)
+    public boolean isEmpty() { return _size == 0; } //O(1)
 
     //empties the deque
     public void clear() { while (!isEmpty()) { pollFirst(); } } //O(n)
