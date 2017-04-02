@@ -1,32 +1,22 @@
-// Team jakue -- Kenny Chen, Adeeb Rahman, Jake Zaia
+// Team jakue -- Kenny Chen, Adeebur Rahman, Jake Zaia
 // APCS2 p1
 // LAB #02 -- All Hands on Deque!
 // 2017-04-03
 
-/*****************************************************
- * interface Queue
- * Includes only methods listed in AP subset of Java
- * (Local version, to override built-in Java implementation.)
- ******************************************************/
+public interface Queue<E> {
+    public boolean add(E e);
 
+    public boolean offer(E e);
+    
+    public E remove();
 
-public interface Queue<Quasar> {
+    public boolean remove(Object o);
+    
+    public E poll();
 
-    //~~~~~~~~~~~~~~~~~~begin AP subset~~~~~~~~~~~~~~~~~~
-    //means of adding an element to collection:
-    //Enqueue an element onto the back of this queue.
-    public void add( Quasar x );
+    public E element();
 
-    //means of removing an element from collection:
-    //Dequeues and returns the first element of the queue.
-    public Quasar remove();
-
-    //Returns true if this queue is empty, otherwise returns false.
+    public E peek();
+    
     public boolean isEmpty();
-
-    //Returns the first element of the queue without dequeuing it.
-    public Quasar peek();
-    //~~~~~~~~~~~~~~~~~~~end AP subset~~~~~~~~~~~~~~~~~~~
-
-
 }//end interface Queue                                                                                           
