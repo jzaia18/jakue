@@ -3,7 +3,7 @@
 // LAB #02 -- All Hands on Deque!
 // 2017-04-03
 
-public interface Deque<E> extends Queue<E> {
+public interface Deque<E> {
     
     // Adds to the front of the Deque
     public void addFirst(E e);
