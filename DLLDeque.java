@@ -11,6 +11,8 @@
 import java.util.NoSuchElementException;
 import java.lang.NullPointerException;
 import java.util.Iterator;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class DLLDeque<E> implements Deque<E> {
 
@@ -212,6 +214,17 @@ public class DLLDeque<E> implements Deque<E> {
     //same as removeFirstOccurence
     public boolean remove(Object o) { return removeFirstOccurence(o); } //O(n)
 
+    //toString as per java.util.AbstractCollection
+    public String toString() {
+	if (size() == 0) { return "[]"; }
+	String ret = "[";
+	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
+	    ret += tmp.getCargo() + ", ";
+	}
+	ret = ret.substring(0,ret.length()-2) + "]";
+	return ret;
+    }//O(n)
+
     //returns true if o is in the deque
     //throws NullPointerException if input is null
     public boolean contains(Object o) {
@@ -222,15 +235,41 @@ public class DLLDeque<E> implements Deque<E> {
 	return false;
     }//O(n)
 
-    //toString as per java.util.AbstractCollection
-    public String toString() {
-	if (size() == 0) { return "[]"; }
-	String ret = "[";
-	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
-	    ret += tmp.getCargo() + ", ";
+
+    //returns true if deque contains all elements in Collection c.
+    public boolean containsAll(Collection<?> c) {
+        for (Object e : c)
+            if (!contains(e))
+                return false;
+        return true;
+    }//O(n)
+
+    //removes all occurences of elements from collection c in deque.
+    //returns true if deque changed.
+    public boolean removeAll(Collection<?> c) {
+	Iterator<E> it = iterator();
+	boolean changed = false;
+        while (it.hasNext()) {
+            if (c.contains(it.next())) {
+                it.remove();
+		changed = true;
+	    }
 	}
-	ret = ret.substring(0,ret.length()-2) + "]";
-	return ret;
+	return changed;
+    }//O(n)
+
+    //removes elements which aren't in collection c from deque.
+    //returns true if deque changed.
+    public boolean retainAll(Collection<?> c) {
+        Iterator<E> it = iterator();
+        boolean changed = false;
+        while (it.hasNext()) {
+            if (!c.contains(it.next())) {
+                it.remove();
+                changed = true;
+            }
+        }
+        return changed;
     }//O(n)
 
     //return an Iterator over this list
@@ -373,8 +412,8 @@ public class DLLDeque<E> implements Deque<E> {
     //main method for testing
     public static void main (String[] args){
 
-	System.out.println("DLLDeque<String> d = new DLLDeque<String>()");
-	DLLDeque<String> d = new DLLDeque<String>();
+	System.out.println("DLLDeque<Object> d = new DLLDeque<Object>()");
+	DLLDeque<Object> d = new DLLDeque<Object>();
 	
 	System.out.println("\ntesting various add methods");
 	System.out.println("d.offerFirst(\"c\")");
@@ -480,8 +519,8 @@ public class DLLDeque<E> implements Deque<E> {
 	d.offer("d");
 	System.out.println("d: " + d); //d: [a, b, c, d]
 
-	System.out.println("Iterator<String> ascIt = d.iterator()");
-	Iterator<String> ascIt = d.iterator();
+	System.out.println("Iterator<Object> ascIt = d.iterator()");
+	Iterator<Object> ascIt = d.iterator();
 
 	System.out.println("ascIt.hasNext(): " + ascIt.hasNext()); //ascIt.hasNext(): true
 	System.out.println("ascIt.next(): " + ascIt.next()); //ascIt.next(): a
@@ -514,8 +553,8 @@ public class DLLDeque<E> implements Deque<E> {
 	d.offer("d");
 	System.out.println("d: " + d); //d: [a, b, c, d]
 
-	System.out.println("Iterator<String> descIt = d.descendingIterator()");
-	Iterator<String> descIt = d.descendingIterator();
+	System.out.println("Iterator<Object> descIt = d.descendingIterator()");
+	Iterator<Object> descIt = d.descendingIterator();
 	
 	System.out.println("descIt.hasNext(): " + descIt.hasNext()); //descIt.hasNext(): true
 	System.out.println("descIt.next(): " + descIt.next()); //descIt.next(): d
@@ -530,6 +569,26 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("descIt.next(): " + descIt.next()); //descIt.next(): a
 	System.out.println("descIt.hasNext(): " + descIt.hasNext()); //descIt.hasNext(): false
 
+	System.out.println("\ntesting containsAll(Collection c)");
+	System.out.println("ArrayList<Object> con = new ArrayList<Object>()");
+	ArrayList<Object> con = new ArrayList<Object>();
+	System.out.println("con.add(\"a\")");
+	con.add("a");
+	System.out.println("con: " + con); //con: [a]
+	System.out.println("con.add(\"d\")");
+	con.add("d");
+	System.out.println("con: " + con); //con: [a, d]
+	System.out.println("d: " + d); //d: [a, c, d]
+	System.out.println("d.containsAll(con): " + d.containsAll(con));
+
+	System.out.println("\ntesting retainAll(Collection c)");
+	System.out.println("d.retainAll(con): " + d.retainAll(con));
+	System.out.println("d: " + d); //d: [a, d]	
+	
+	System.out.println("\ntesting removeAll(Collection c)");
+	System.out.println("d.removeAll(con): " + d.removeAll(con));
+	System.out.println("d: " + d); //d: []	
+	
     }//end main
     
 }//end class DLLDeque
