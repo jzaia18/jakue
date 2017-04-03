@@ -1,7 +1,9 @@
 // Team jakue -- Kenny Chen, Adeebur Rahman, Jake Zaia
 // APCS2 p1
 // LAB #02 -- All Hands on Deque!
-// 2017-04-03
+// 2017-04-04
+
+import java.util.Iterator;
 
 public interface Deque<E> {
     
@@ -19,6 +21,7 @@ public interface Deque<E> {
     // Returns information about the Deque
     public boolean isEmpty();    
     public boolean contains(Object o);
+    public int size();
     
     // Peek elements in the front of the Deque
     public E element();
@@ -45,4 +48,11 @@ public interface Deque<E> {
     public boolean remove(Object o); // Front
     public boolean removeFirstOccurence(Object o);
     public boolean removeLastOccurence(Object o);
+
+    // Remove all elements
+    public void clear();
+    
+    // Iterators
+    public Iterator<E> iterator();
+    public Iterator<E> descendingIterator();
 }
