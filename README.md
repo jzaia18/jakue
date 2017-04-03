@@ -22,6 +22,7 @@ A doubly-linked node-based Deque implementation
 * `E getLast()` reasoning: implemented in the past.
 * `E peekFirst()` reasoning: same as `getFirst()`, except returns null if dequq is empty.
 * `E peekLast()` reasoning: same as `getLast()`, except returns null if deque is empty.
+* `E peek()`  reasoning: same as `peekFirst()`.
 * `E removeFirst()` reasoning: implemented in the past.
 * `E removeLast()` reasoning: implemented in the past.
 * `E remove()` reasoning: same as `removeFirst()`.
