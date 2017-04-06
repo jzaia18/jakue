@@ -49,8 +49,8 @@ Reasoning: Very similar to our past implementations of remove/pop.
 ##### Specific Remove Methods
 ```
 public boolean remove(Object o); 
-public boolean removeFirstOccurence(Object o);
-public boolean removeLastOccurence(Object o);
+public boolean removeFirstOccurrence(Object o);
+public boolean removeLastOccurrence(Object o);
 ```
 Reasoning: Very similar to removing from the middle of a DLList.
 
