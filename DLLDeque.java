@@ -185,26 +185,24 @@ public class DLLDeque<E> implements Deque<E> {
     //throws NullPointerException if input is null
     public boolean removeFirstOccurrence(Object o) {
 	if (o.equals(null)) { throw new NullPointerException(); }
-	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
-	    if (o.equals(tmp.getCargo())) {
-		tmp.getPrev().setNext(tmp.getNext());
-		tmp.getNext().setPrev(tmp.getPrev());
-		_size--;
+	Iterator<E> it = iterator();
+	while(it.hasNext()) {
+	    if (o.equals(it.next())) {
+		it.remove();
 		return true;
 	    }
 	}
-	return false;    
+	return false;
     }//O(n)
 
     //removes last Occurrence of o
     //throws NullPointerException if input is null
     public boolean removeLastOccurrence(Object o) {
 	if (o.equals(null)) { throw new NullPointerException(); }
-	for (DLLNode<E> tmp = _end; tmp!= null; tmp = tmp.getPrev()) {
-	    if (o.equals(tmp.getCargo())) {
-		tmp.getPrev().setNext(tmp.getNext());
-		tmp.getNext().setPrev(tmp.getPrev());
-		_size--;
+	Iterator<E> it = descendingIterator();
+	while(it.hasNext()) {
+	    if (o.equals(it.next())) {
+		it.remove();
 		return true;
 	    }
 	}
