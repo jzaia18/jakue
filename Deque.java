@@ -52,9 +52,9 @@ public interface Deque<E> {
 
     // Remove a specified element
     // throws NullPointerException if input == null
-    public boolean remove(Object o); // FirstOccurence
-    public boolean removeFirstOccurence(Object o);
-    public boolean removeLastOccurence(Object o);
+    public boolean remove(Object o); // FirstOccurrence
+    public boolean removeFirstOccurrence(Object o);
+    public boolean removeLastOccurrence(Object o);
 
     // Returns information about the Deque 
     public boolean isEmpty(); // Returns true if Deque is empty.

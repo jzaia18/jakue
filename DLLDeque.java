@@ -181,9 +181,9 @@ public class DLLDeque<E> implements Deque<E> {
     //returns the size of the deque
     public int size() { return _size; } //O(1)
 
-    //removes first occurence of o
+    //removes first Occurrence of o
     //throws NullPointerException if input is null
-    public boolean removeFirstOccurence(Object o) {
+    public boolean removeFirstOccurrence(Object o) {
 	if (o.equals(null)) { throw new NullPointerException(); }
 	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
 	    if (o.equals(tmp.getCargo())) {
@@ -196,9 +196,9 @@ public class DLLDeque<E> implements Deque<E> {
 	return false;    
     }//O(n)
 
-    //removes last occurence of o
+    //removes last Occurrence of o
     //throws NullPointerException if input is null
-    public boolean removeLastOccurence(Object o) {
+    public boolean removeLastOccurrence(Object o) {
 	if (o.equals(null)) { throw new NullPointerException(); }
 	for (DLLNode<E> tmp = _end; tmp!= null; tmp = tmp.getPrev()) {
 	    if (o.equals(tmp.getCargo())) {
@@ -211,8 +211,8 @@ public class DLLDeque<E> implements Deque<E> {
 	return false;
     }//O(n)
 
-    //same as removeFirstOccurence
-    public boolean remove(Object o) { return removeFirstOccurence(o); } //O(n)
+    //same as removeFirstOccurrence
+    public boolean remove(Object o) { return removeFirstOccurrence(o); } //O(n)
 
     //toString as per java.util.AbstractCollection
     public String toString() {
@@ -244,7 +244,7 @@ public class DLLDeque<E> implements Deque<E> {
         return true;
     }//O(n)
 
-    //removes all occurences of elements from collection c in deque.
+    //removes all Occurrences of elements from collection c in deque.
     //returns true if deque changed.
     public boolean removeAll(Collection<?> c) {
 	Iterator<E> it = iterator();
@@ -477,13 +477,13 @@ public class DLLDeque<E> implements Deque<E> {
 
 	System.out.println("\ntesting contains(Object o)");
 	System.out.println("d.contains(\"L\"): " + d.contains("L")); //d.contains("L"): true
-	System.out.println("\ntesting removeFirstOccurence(Object o)");	
+	System.out.println("\ntesting removeFirstOccurrence(Object o)");	
 	System.out.println("d: " + d); //d: [p, L, b, L, p, L, b]
-	System.out.println("d.removeFirstOccurence(\"L\"): " + d.removeFirstOccurence("L")); //d.removeFirstOccurence("L"): true
+	System.out.println("d.removeFirstOccurrence(\"L\"): " + d.removeFirstOccurrence("L")); //d.removeFirstOccurrence("L"): true
 	System.out.println("d: " + d); //d: [p, b, L, p, L, b]
-	System.out.println("\ntesting removeLastOccurence(Object o)");
+	System.out.println("\ntesting removeLastOccurrence(Object o)");
 	System.out.println("d: " + d); //d: [p, b, L, p, L, b]
-	System.out.println("d.removeLastOccurence(\"L\"): " + d.removeLastOccurence("L")); //d.removeLastOccurence("L"): true
+	System.out.println("d.removeLastOccurrence(\"L\"): " + d.removeLastOccurrence("L")); //d.removeLastOccurrence("L"): true
 	System.out.println("d: " + d); //d: [p, b, L, p, b]
 
 	System.out.println("\ntesting various remove methods");
