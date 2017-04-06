@@ -484,6 +484,23 @@ public class DLLDeque<E> implements Deque<E> {
 	System.out.println("d.removeLastOccurrence(\"L\"): " + d.removeLastOccurrence("L")); //d.removeLastOccurrence("L"): true
 	System.out.println("d: " + d); //d: [p, b, L, p, b]
 
+	System.out.println("\nd.offerLast(\"b\")");
+	d.offerLast("b");
+	System.out.println("d: " + d); //d: [p, b, L, p, b, b]
+
+	System.out.println("\nd.offerFirst(\"p\")");
+	d.offerFirst("p");
+	System.out.println("d: " + d); //d: [p, p, b, L, p, b, b]
+
+	System.out.println("\ntesting removeFirstOccurrence(Object o)");
+	System.out.println("d: " + d); //d: [p, p, b, L, p, b, b]
+        System.out.println("d.removeFirstOccurrence(\"p\"): " + d.removeFirstOccurrence("p")); //d.removeFirstOccurrence("p"): true
+        System.out.println("d: " + d); //d: [p, b, L, p, b, b]
+        System.out.println("\ntesting removeLastOccurrence(Object o)");
+        System.out.println("d: " + d); //d: [p, b, L, p, b, b]
+        System.out.println("d.removeLastOccurrence(\"b\"): " + d.removeLastOccurrence("b")); //d.removeLastOccurrence("b"): true
+        System.out.println("d: " + d); //d: [p, b, L, p, b]
+	
 	System.out.println("\ntesting various remove methods");
 	System.out.println("d.pollFirst(): " + d.pollFirst()); //d.pollFirst(): p
 	System.out.println("d: " + d); //d: [b, L, p, b]
