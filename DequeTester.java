@@ -1,4 +1,4 @@
-public class Driver{
+public class DequeTester{
 
     public static void main( String[] args ) 
     {
