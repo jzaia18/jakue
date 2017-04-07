@@ -184,7 +184,7 @@ public class DLLDeque<E> implements Deque<E> {
     //removes first Occurrence of o
     //throws NullPointerException if input is null
     public boolean removeFirstOccurrence(Object o) {
-	if (o.equals(null)) { throw new NullPointerException(); }
+	if (o == null) { throw new NullPointerException(); }
 	Iterator<E> it = iterator();
 	while(it.hasNext()) {
 	    if (o.equals(it.next())) {
@@ -198,7 +198,7 @@ public class DLLDeque<E> implements Deque<E> {
     //removes last Occurrence of o
     //throws NullPointerException if input is null
     public boolean removeLastOccurrence(Object o) {
-	if (o.equals(null)) { throw new NullPointerException(); }
+	if (o == null) { throw new NullPointerException(); }
 	Iterator<E> it = descendingIterator();
 	while(it.hasNext()) {
 	    if (o.equals(it.next())) {
@@ -226,7 +226,7 @@ public class DLLDeque<E> implements Deque<E> {
     //returns true if o is in the deque
     //throws NullPointerException if input is null
     public boolean contains(Object o) {
-	if (o.equals(null)) { throw new NullPointerException(); }	
+	if (o == null ) { throw new NullPointerException(); }	
 	for (DLLNode<E> tmp = _front; tmp!= null; tmp = tmp.getNext()) {
 	    if (o.equals(tmp.getCargo())) { return true; }
 	}
@@ -410,7 +410,126 @@ public class DLLDeque<E> implements Deque<E> {
     //main method for testing
     public static void main (String[] args){
 
-	System.out.println("DLLDeque<Object> d = new DLLDeque<Object>()");
+
+	System.out.println("\n\nException Checking");
+	Deque<String> deck = new DLLDeque<String>();
+	//get testing
+	String s = "test";
+	try {
+	    s = deck.getFirst(); //should throw exception. s should still be test.
+	    if (!s.equals("test")) { System.out.println("getFirst() wrongly returned a value"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("getFirst() properly threw an exception");
+	}
+	
+	//element testing
+	s = "test";
+	try {
+	    s = deck.element(); //should throw exception. s should still be test.
+	    if (!s.equals("test")) { System.out.println("element() wrongly returned a value"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("element() properly threw an exception");
+	}
+	
+	//peek testing
+	s = "test";
+	try {
+	    s = deck.peekFirst(); //s should be null;
+	    if (s == null) { System.out.println("peekFirst() properly returned null"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("peekFirst() wrongly threw an exception");
+	}
+	
+	//removeFirst testing
+	s = "test";
+	try {
+	    s = deck.removeFirst(); //should throw exception. s should still be test.
+	    if (!s.equals("test")) { System.out.println("removeFirst() wrongly returned a value"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("removeFirst() properly threw an exception");
+	}
+
+	//pop  testing
+	s = "test";
+	try {
+	    s = deck.pop(); //should throw exception. s should still be test.
+	    if (!s.equals("test")) { System.out.println("pop() wrongly returned a value"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("pop() properly threw an exception");
+	}
+
+	//poll testing
+	s = "test";
+	try {
+	    s = deck.pollFirst(); //s should be null;
+	    if (s == null) { System.out.println("pollFirst() properly returned null"); }
+	}
+	catch (NoSuchElementException e) {
+	    System.out.println("pollFirst() wrongly threw an exception");
+	}
+	
+	//add testing
+	try {
+	    deck.addFirst(null);
+	    System.out.println("addFirst(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("addFirst(null) properly threw an exception");
+	}
+
+	//offer testing
+	try {
+	    deck.offerFirst(null);
+	    System.out.println("offerFirst(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("offerFirst(null) properly threw an exception");
+	}
+
+	//push testing
+	try {
+	    deck.push(null);
+	    System.out.println("push(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("push(null) properly threw an exception");
+	}
+
+	//contains testing
+	try {
+	    deck.contains(null);
+	    System.out.println("contains(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("contains(null) properly threw an exception");
+	}
+
+	//removeFirstOccurrence testing
+	try {
+	    deck.removeFirstOccurrence(null);
+	    System.out.println("removeFirstOccurrence(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("removeFirstOccurrence(null) properly threw an exception");
+	}
+
+
+	//removeLastOccurrence testing
+	try {
+	    deck.removeLastOccurrence(null);
+	    System.out.println("removeLastOccurrence(null) should have thrown an exception but didn't");
+	}
+	catch (NullPointerException e) {
+	    System.out.println("removeLastOccurrence(null) properly threw an exception");
+	}
+
+	System.out.println("\n\nGeneral Testing");	
+	System.out.println("\nDLLDeque<Object> d = new DLLDeque<Object>()");
 	DLLDeque<Object> d = new DLLDeque<Object>();
 	
 	System.out.println("\ntesting various add methods");
